@@ -1,0 +1,58 @@
+<p>
+<strong>Project:</strong>
+<%= @todos.project %>
+</p>
+
+<p>
+<strong>Description:</strong>
+<%= @todos.description %>
+</p>
+
+<table>
+    <th>
+    <tr>status</tr>
+    <tr>priority</tr>
+    <tr>tags</tr>
+    </th>
+    <tr>
+<%= @todos.status %>
+    </tr>
+<%= @todos.priority %>
+    <tr>
+<%= @todos.tags %>
+    </tr>
+</table>
+
+
+<h2>Comments</h2>
+<% @todos.comments.each do |comment| %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>
+  </p>
+ 
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.body %>
+  </p>
+<% end %>
+ 
+<h2>Add a comment:</h2>
+<%= form_with(model: [ @todos, @todos.comments.build ]) do |form| %>
+  <p>
+    <%= form.label :commenter %><br>
+    <%= form.text_field :commenter %>
+  </p>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+ 
+
+<%= link_to 'New todo', new_todos_path %>
+<%= link_to 'Back home', todos_path %>
+<%= link_to 'Edit', edit_todo_path(@todos) %>

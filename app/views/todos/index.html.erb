@@ -1,0 +1,47 @@
+<h1>Listing Your Todo</h1>
+<%= link_to 'New Todo', new_todo_path %>
+<table>
+    <tr>
+        <th>
+            Project
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Tags
+        </th>
+        <th>
+            Urgency
+        </th>
+        <th>
+            priority
+        </th>
+        <th>
+            due
+        </th>
+
+    </tr>
+
+    <% @todos.each do |todo| %>
+        <tr>
+        <td> <%= todo.project %> </td>
+        <td> <%= todo.description %> </td>
+        <td> <%= todo.status %> </td>
+        <td> <%= todo.tags %> </td>
+        <td> <%= todo.urgency %> </td>
+        <td> <%= todo.priority %> </td>
+        <td> <%= todo.depends %> </td>
+        <td> <%= todo.due %> </td>
+        <td> <%= link_to 'Show Page', todo_path(todo) %> </td>
+        <td> <%= link_to 'Edit Page', edit_todo_path(todo) %> </td>
+        <td> <%= link_to 'Destroy', todo_path(todo),
+                                    method: :delete,
+                                    data: { confirm: 'You dont wanna do this the task is not done' }%> </td>
+
+        </tr>
+    <% end %>
+</table>
