@@ -24,20 +24,20 @@ class TodosController < ApplicationController
           render 'new'
       end
     end
-    def calculateFinish
-        x_data = []
-        y_data = [] 
-        x_data.push(@todos.modified)
-        y_data.push(@todos.end)
-        linear_regression = RubyLinearRegression.new 
-        linear_regression.load_training_data(x_data, y_data)
-        linear_regression.train_normal_equation
-        p "Trained the model with the following cost-benefit trade off #{linear_regression.compute_cost}"
+    # def calculateFinish
+    #     x_data = []
+    #     y_data = [] 
+    #     x_data.push(@todos.modified)
+    #     y_data.push(@todos.end)
+    #     linear_regression = RubyLinearRegression.new 
+    #     linear_regression.load_training_data(x_data, y_data)
+    #     linear_regression.train_normal_equation
+    #     p "Trained the model with the following cost-benefit trade off #{linear_regression.compute_cost}"
 
-        prediction_data = [2112312141, 1231231241]
-        predicted_end = linear_regression.predict(prediction_data)
-        puts "Predicted actual completetion time of: #{predicted_end}"
-    end
+    #     prediction_data = [2112312141, 1231231241]
+    #     predicted_end = linear_regression.predict(prediction_data)
+    #     puts "Predicted actual completetion time of: #{predicted_end}"
+    # end
    
 	def	update
 		@todos = Todo.find(params[:id])
